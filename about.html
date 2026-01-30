@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="oemmart.png" />
+    <title>About OEMMart - AI-Powered Government Tender Solutions</title>
+    <meta
+      content="Discover how OEMMart transforms the OEM landscape by providing intelligent document management solutions that enhance decision-making and operational efficiency."
+      name="description"
+    />
+    <style>
+      :root {
+        --color-primary: #4f46e5;
+        --color-primary-light: #6365f1c8;
+        --color-accent: #06b6d4;
+        --color-bg: #f8fafc;
+        --color-bg-secondary: #ffffff;
+        --color-text: #0f172a;
+        --color-text-secondary: #64748b;
+        --color-border: rgba(148, 163, 184, 0.2);
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        background: linear-gradient(
+          135deg,
+          #f8fafc 0%,
+          #eff3ff 50%,
+          #f0fdff 100%
+        );
+        color: var(--color-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        position: relative;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 4rem);
+        max-width: 1200px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 1000;
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 1rem 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .logo img {
+        height: 50px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--color-primary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--color-primary);
+        transform: translateY(-1px);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-links a.active {
+        color: var(--color-primary);
+      }
+
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown > a {
+        cursor: pointer;
+      }
+
+      .dropdown-arrow {
+        font-size: 0.7rem;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 1rem);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 0.5rem;
+        min-width: 180px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .dropdown-menu a::after {
+        display: none;
+      }
+
+      .dropdown-menu a:hover {
+        background: white;
+        color: var(--color-primary);
+        transform: translateX(4px);
+      }
+
+      .cta-btn {
+        background: var(--color-primary);
+        color: white;
+        padding: 0.65rem 1.5rem;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+      }
+
+      .cta-btn:hover {
+        background: var(--color-primary-light);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+      }
+
+      /* Hero Section */
+      .hero-about {
+        margin-top: 120px;
+        padding: 4rem 2rem;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-about::before {
+        content: "";
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-30px);
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--color-text);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-text p {
+        font-size: 1.25rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.8;
+      }
+
+      .hero-image {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Mission Section */
+      .mission-section {
+        padding: 6rem 2rem;
+        background: white;
+        position: relative;
+      }
+
+      .mission-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .eyebrow {
+        color: var(--color-primary);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+      }
+
+      .mission-content h2 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin-bottom: 2rem;
+      }
+
+      .mission-content p {
+        font-size: 1.15rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Values Section */
+      .values-section {
+        padding: 6rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #eff3ff 100%);
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .value-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 2.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(79, 70, 229, 0.15);
+      }
+
+      .value-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .value-card h3 {
+        font-size: 1.5rem;
+        color: var(--color-text);
+        margin-bottom: 1rem;
+      }
+
+      .value-card p {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+      }
+
+      /* Tags */
+      .tag-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        justify-content: center;
+      }
+
+      .tag {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        padding: 0.5rem 1.25rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: var(--color-primary);
+        font-weight: 500;
+      }
+
+      /* Footer */
+      footer {
+        background: #0f172a;
+        color: white;
+        padding: 4rem 2rem 2rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-section h4 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-section a {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section a:hover {
+        color: var(--color-accent);
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: #94a3b8;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .hero-text h1 {
+          font-size: 2.5rem;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          width: calc(100% - 2rem);
+          padding: 0.75rem 1.5rem;
+        }
+
+        .hero-text h1 {
+          font-size: 2rem;
+        }
+
+        .hero-text p {
+          font-size: 1.1rem;
+        }
+
+        .mission-content h2 {
+          font-size: 2rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="index_fixed.html" class="logo">
+          <img src="oemmart.bkp.png" alt="OEMMart Logo" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="index_fixed.html#features">Features</a></li>
+          <li><a href="index_fixed.html#fitscore">FitScore AI</a></li>
+          <li><a href="index_fixed.html#pricing">Pricing</a></li>
+          <li><a href="index_fixed.html#how">How It Works</a></li>
+          <li class="dropdown">
+            <a href="#resources">
+              Resources
+              <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="dropdown-menu">
+              <a href="about.html" class="active">About</a>
+              <a href="#blog">Blog</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </li>
+        </ul>
+        <a href="#contact" class="cta-btn">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-about">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Smarter decisions.<br />Less document chaos.</h1>
+            <p>
+              Transforming how OEMs access and analyze complex documentation
+              with AI-powered insights for every team.
+            </p>
+          </div>
+          <div class="hero-image">
+            <img src="oemmart.bkp.png" alt="OEMMart AI Platform" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+      <div class="container">
+        <div class="mission-content">
+          <div class="eyebrow">Our story and values</div>
+          <h2>Transforming OEM decision-making</h2>
+          <p>
+            Our mission is to become the most trusted partner for OEMs
+            worldwide. Through our
+            <strong>AI-powered OEM collaboration platform</strong>, we help
+            manufacturers win more bids, streamline procurement, and deliver
+            exceptional after-sales support by turning overwhelming
+            documentation into real-time insights that drive action across every
+            stage of the customer journey.
+          </p>
+          <p>
+            We were tired of spending countless hours processing massive
+            documents manually and kept asking ourselves: there must be a better
+            way. Out of that frustration came our solution, designed to cut
+            through complexity, surface the details that matter most, and make
+            working with big documents faster, smarter, and far less painful.
+          </p>
+          <div class="tag-group">
+            <div class="tag">AI Innovation</div>
+            <div class="tag">Document Intelligence</div>
+            <div class="tag">OEM Solutions</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <div class="mission-content">
+          <div class="eyebrow">Our Values</div>
+          <h2>What drives us forward</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🚀</div>
+            <h3>Innovation First</h3>
+            <p>
+              We continuously push the boundaries of AI technology to deliver
+              cutting-edge solutions that transform how OEMs work.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <h3>Customer Success</h3>
+            <p>
+              Your success is our success. We're committed to delivering
+              measurable results and exceptional support.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🔒</div>
+            <h3>Trust & Security</h3>
+            <p>
+              We prioritize data security and privacy, ensuring your sensitive
+              information is always protected.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>OEMMART</h4>
+          <ul>
+            <li><a href="index_fixed.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#help">Help Center</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#cookies">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>All rights reserved © 2025 OEMMart</p>
+      </div>
+    </footer>
+  </body>
+</html>

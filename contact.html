@@ -4,11 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/oemmart.png" />
-    <title>About OEMMart - Empowering OEMs with AI Solutions</title>
+    <title>Contact OEMMart | Reach Out to Us</title>
     <meta
-      content="Discover how OEMMart transforms the OEM landscape by providing intelligent document management solutions that enhance decision-making and operational efficiency."
+      content="Have questions about OEMMart's services or need support? Contact us today to learn how our advanced AI solutions can transform your documentation processes."
       name="description"
     />
+    <script
+      charset="utf-8"
+      type="text/javascript"
+      src="//js-na3.hsforms.net/forms/embed/v2.js"
+      async
+      defer
+    ></script>
     <style>
       :root {
         --color-primary: #4f46e5;
@@ -236,17 +243,15 @@
       }
 
       /* Hero Section */
-      .hero-about {
+      .hero-contact {
         margin-top: 120px;
-        padding: 4rem 2rem;
-        min-height: 70vh;
-        display: flex;
-        align-items: center;
+        padding: 4rem 2rem 2rem;
+        text-align: center;
         position: relative;
         overflow: hidden;
       }
 
-      .hero-about::before {
+      .hero-contact::before {
         content: "";
         position: absolute;
         top: -20%;
@@ -279,58 +284,6 @@
         width: 100%;
       }
 
-      .hero-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      .hero-text h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: var(--color-text);
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hero-text p {
-        font-size: 1.25rem;
-        color: var(--color-text-secondary);
-        margin-bottom: 2rem;
-        line-height: 1.8;
-      }
-
-      .hero-image {
-        position: relative;
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      }
-
-      .hero-image img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      /* Mission Section */
-      .mission-section {
-        padding: 6rem 2rem;
-        background: white;
-        position: relative;
-      }
-
-      .mission-content {
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: center;
-      }
-
       .eyebrow {
         color: var(--color-primary);
         font-weight: 600;
@@ -340,49 +293,193 @@
         margin-bottom: 1rem;
       }
 
-      .mission-content h2 {
-        font-size: 2.75rem;
+      .hero-contact h1 {
+        font-size: 3rem;
         font-weight: 700;
         color: var(--color-text);
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
-      .mission-content p {
-        font-size: 1.15rem;
+      .hero-contact p {
+        font-size: 1.2rem;
         color: var(--color-text-secondary);
+        max-width: 700px;
+        margin: 0 auto 3rem;
         line-height: 1.8;
+      }
+
+      /* Contact Form Section */
+      .contact-section {
+        padding: 2rem 6rem;
+        background: white;
+        position: relative;
+      }
+
+      .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border: 2px solid transparent;
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        border-radius: 24px;
+        padding: 3rem;
+        box-shadow:
+          0 24px 48px rgba(0, 0, 0, 0.12),
+          0 8px 16px rgba(79, 70, 229, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+      }
+
+      /* HubSpot Form Styling */
+      .hbspt-form {
+        width: 100%;
+      }
+
+      .hbspt-form .hs-form-field {
         margin-bottom: 1.5rem;
       }
 
-      /* Values Section */
-      .values-section {
-        padding: 6rem 2rem;
-        background: linear-gradient(135deg, #f8fafc 0%, #eff3ff 100%);
+      .hbspt-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--color-text);
+        font-weight: 600;
+        font-size: 0.95rem;
       }
 
-      .values-grid {
+      .hbspt-form input[type="text"],
+      .hbspt-form input[type="email"],
+      .hbspt-form input[type="tel"],
+      .hbspt-form textarea,
+      .hbspt-form select {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 2px solid var(--color-border);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: inherit;
+        background: #f9fafb;
+        transition: all 0.3s;
+      }
+
+      .hbspt-form input:focus,
+      .hbspt-form textarea:focus,
+      .hbspt-form select:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      .hbspt-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .hbspt-form .hs-button {
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+      }
+
+      .hbspt-form .hs-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+      }
+
+      /* Loading State */
+      .form-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 2rem;
+        gap: 1.5rem;
+      }
+
+      .form-loading.hidden {
+        display: none;
+      }
+
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(79, 70, 229, 0.1);
+        border-top-color: var(--color-primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        color: var(--color-text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .hbspt-form {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+
+      .hbspt-form.loaded {
+        opacity: 1;
+      }
+
+      /* Contact Info Cards */
+      .contact-info {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
-        margin-top: 3rem;
+        margin-bottom: 2rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .value-card {
+      .info-card {
         background: var(--glass-bg);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid var(--glass-border);
         border-radius: 16px;
-        padding: 2.5rem;
+        padding: 2rem;
+        text-align: center;
         transition: all 0.3s ease;
       }
 
-      .value-card:hover {
+      .info-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(79, 70, 229, 0.15);
       }
 
-      .value-icon {
+      .info-icon {
         width: 60px;
         height: 60px;
         background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
@@ -390,39 +487,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .value-card h3 {
         font-size: 1.5rem;
-        color: var(--color-text);
-        margin-bottom: 1rem;
+        margin: 0 auto 1rem;
       }
 
-      .value-card p {
+      .info-card h3 {
+        font-size: 1.25rem;
+        color: var(--color-text);
+        margin-bottom: 0.5rem;
+      }
+
+      .info-card p {
         color: var(--color-text-secondary);
         line-height: 1.6;
-      }
-
-      /* Tags */
-      .tag-group {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-        justify-content: center;
-      }
-
-      .tag {
-        background: var(--glass-bg);
-        backdrop-filter: blur(10px);
-        border: 1px solid var(--glass-border);
-        padding: 0.5rem 1.25rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        color: var(--color-primary);
-        font-weight: 500;
       }
 
       /* Footer */
@@ -485,21 +562,8 @@
 
       /* Responsive */
       @media (max-width: 1024px) {
-        .hero-content {
+        .contact-info {
           grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .hero-text h1 {
-          font-size: 2.5rem;
-        }
-
-        .values-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-content {
-          grid-template-columns: repeat(2, 1fr);
         }
 
         .nav-links {
@@ -513,16 +577,16 @@
           padding: 0.75rem 1.5rem;
         }
 
-        .hero-text h1 {
+        .hero-contact h1 {
           font-size: 2rem;
         }
 
-        .hero-text p {
+        .hero-contact p {
           font-size: 1.1rem;
         }
 
-        .mission-content h2 {
-          font-size: 2rem;
+        .form-container {
+          padding: 2rem 1.5rem;
         }
 
         .footer-content {
@@ -550,9 +614,9 @@
               <span class="dropdown-arrow">▼</span>
             </a>
             <div class="dropdown-menu">
-              <a href="about.html" class="active">About</a>
+              <a href="about.html">About</a>
               <a href="#blog">Blog</a>
-              <a href="contact.html">Contact</a>
+              <a href="contact.html" class="active">Contact</a>
             </div>
           </li>
         </ul>
@@ -561,147 +625,114 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-about">
+    <section class="hero-contact">
       <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1>Smarter decisions.<br />Less document chaos.</h1>
-            <p>
-              Transforming how OEMs access and analyze complex documentation
-              with AI-powered insights for every team.
-            </p>
-            <p style="font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-              We empower manufacturers to win more bids, streamline procurement decisions, and deliver exceptional after-sales support through intelligent document analysis that turns hours of manual work into seconds of automated insights.
-            </p>
-            <div class="button-group" style="margin-top: 2rem;">
-              <a href="#Mission" class="cta-btn" style="display: inline-block;">Our Mission</a>
-            </div>
+        <div class="eyebrow">Support</div>
+        <h1>Connect with our team</h1>
+        <p>
+          Have questions about OEMMart's services or need support? We're here to
+          help you transform your documentation processes with AI.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="contact-section" style="padding-top: 0">
+      <div class="container">
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">📧</div>
+            <h3>Email Us</h3>
+            <p>Get in touch with our team for inquiries and support</p>
           </div>
-          <div class="hero-image">
-            <img src="assets/ai-table.png" alt="OEMMart AI Platform" />
+          <div class="info-card">
+            <div class="info-icon">�</div>
+            <h3>Help Center</h3>
+            <p>Browse our documentation and resources</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <h3>Schedule a Call</h3>
+            <p>Book a demo to see OEMMart in action</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Mission Section -->
-    <section id="Mission" class="mission-section">
+    <!-- Contact Form Section -->
+    <section class="contact-section">
       <div class="container">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-          <!-- Left Column - Image -->
-          <div style="position: relative;">
-            <div
-              style="
-                border-radius: 24px;
-                overflow: hidden;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-                position: relative;
-              "
-            >
-              <img
-                width="100%"
-                height="auto"
-                alt="image of content management strategy session"
-                src="assets/meeting-table-p-800.png"
-                loading="lazy"
-                style="display: block; width: 100%; height: auto"
-              />
-            </div>
-            <div style="
-              position: absolute;
-              bottom: -20px;
-              right: -20px;
-              width: 150px;
-              height: 150px;
-              background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-              border-radius: 50%;
-              opacity: 0.1;
-              z-index: -1;
-            "></div>
+        <div class="form-container">
+          <!-- Loading State -->
+          <div class="form-loading" id="formLoading">
+            <div class="spinner"></div>
+            <div class="loading-text">Loading contact form...</div>
           </div>
 
-          <!-- Right Column - Content -->
-          <div>
-            <div class="eyebrow" style="text-align: left;">Our story and values</div>
-            <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--color-text); margin-bottom: 1.5rem; line-height: 1.2; text-align: left;">
-              Transforming OEM decision-making
-            </h2>
-            <p style="font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; text-align: left;">
-              Our mission is to become the most trusted partner for OEMs
-              worldwide. Through our
-              <strong style="color: var(--color-primary);">AI-powered OEM collaboration platform</strong>, we help
-              manufacturers win more bids, streamline procurement, and deliver
-              exceptional after-sales support by turning overwhelming
-              documentation into real-time insights that drive action across every
-              stage of the customer journey.
-            </p>
-            <p style="font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 2rem; text-align: left;">
-              We were tired of spending countless hours processing massive
-              documents manually and kept asking ourselves: there must be a better
-              way. Out of that frustration came our solution, designed to cut
-              through complexity, surface the details that matter most, and make
-              working with big documents faster, smarter, and far less painful.
-            </p>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-              <div class="tag">AI innovation</div>
-              <div class="tag">Document intelligence</div>
-              <div class="tag">OEM solutions</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <!-- HubSpot Form -->
+          <div class="hbspt-form" id="hubspotForm">
+            <script>
+              let formAttempts = 0;
+              const maxAttempts = 50; // Try for up to 5 seconds
 
-    <style>
-      @media (max-width: 1024px) {
-        #Mission .container > div {
-          grid-template-columns: 1fr !important;
-          gap: 2rem !important;
-        }
-        #Mission h2 {
-          font-size: 2rem !important;
-        }
-      }
-    </style>
+              function hideLoading() {
+                const loadingElement = document.getElementById("formLoading");
+                const formElement = document.getElementById("hubspotForm");
+                if (loadingElement) {
+                  loadingElement.classList.add("hidden");
+                }
+                if (formElement) {
+                  formElement.classList.add("loaded");
+                }
+              }
 
-    <!-- Values Section -->
-    <section class="values-section">
-      <div class="container">
-        <div class="mission-content">
-          <div class="eyebrow">Our Values</div>
-          <h2>What drives us forward</h2>
-        </div>
-        <div class="values-grid">
-          <div class="value-card">
-            <div class="value-icon">🚀</div>
-            <h3>Innovation First</h3>
-            <p>
-              We continuously push the boundaries of AI technology to deliver
-              cutting-edge solutions that transform how OEMs work.
-            </p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🎯</div>
-            <h3>Customer Success</h3>
-            <p>
-              Your success is our success. We're committed to delivering
-              measurable results and exceptional support.
-            </p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🔒</div>
-            <h3>Trust & Security</h3>
-            <p>
-              We prioritize data security and privacy, ensuring your sensitive
-              information is always protected.
-            </p>
+              function loadHubSpotForm() {
+                formAttempts++;
+
+                if (window.hbspt) {
+                  hbspt.forms.create({
+                    portalId: "341778708",
+                    formId: "90f0e3b8-f6d7-4d19-a872-c69098bc6d91",
+                    region: "na3",
+                    target: "#hubspotForm",
+                    onFormReady: function ($form) {
+                      console.log("HubSpot form loaded successfully");
+                      hideLoading();
+                    },
+                    onFormSubmit: function ($form) {
+                      console.log("Form submitted");
+                    },
+                  });
+
+                  // Fallback: hide loading after 2 seconds even if onFormReady doesn't fire
+                  setTimeout(function () {
+                    hideLoading();
+                  }, 2000);
+                } else if (formAttempts < maxAttempts) {
+                  // Retry if script hasn't loaded yet
+                  setTimeout(loadHubSpotForm, 100);
+                } else {
+                  // Failed to load after max attempts
+                  console.error("Failed to load HubSpot form");
+                  document.getElementById("formLoading").innerHTML =
+                    '<div style="color: var(--color-text-secondary); text-align: center;"><p>Unable to load form. Please refresh the page or contact us directly at support@oemmart.com</p></div>';
+                }
+              }
+
+              // Try to load as soon as DOM is ready
+              if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", loadHubSpotForm);
+              } else {
+                loadHubSpotForm();
+              }
+            </script>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-   <footer>
+    <footer>
       <div class="footer-content">
         <div class="footer-section">
           <h4>OEMMart</h4>
@@ -714,9 +745,9 @@
         <div class="footer-section">
           <h4>Product</h4>
           <ul>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how">How It Works</a></li>
             <li><a href="#">Security</a></li>
           </ul>
         </div>
@@ -733,16 +764,7 @@
         <div class="footer-section">
           <h4>Legal</h4>
           <ul>
-             <li class="margin-bottom_none">
-                          <a
-                            href="https://cdn.prod.website-files.com/68a4b5b19d871138a5b8d1d3/68adf8dbf9257704587f4d8f_Privacy-Policy-V3-1-.pdf"
-                            target="_blank"
-                            class="nav_dropdown-link w-inline-block"
-                            ><div class="button_label">
-                              Privacy Policy
-                            </div></a
-                          >
-                        </li>
+            <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms of Service</a></li>
             <li><a href="#">Cookie Policy</a></li>
             <li><a href="#">Support</a></li>

@@ -264,7 +264,6 @@
           transparent 70%
         );
         border-radius: 50%;
-        animation: float 6s ease-in-out infinite;
         pointer-events: none;
       }
 
@@ -341,7 +340,6 @@
         z-index: 1;
         width: 100%;
         box-sizing: border-box;
-        animation: fadeIn 0.8s ease-out;
       }
 
       .hero-text h1 {
@@ -351,7 +349,6 @@
         line-height: 1.15;
         color: var(--color-text);
         letter-spacing: -0.02em;
-        animation: slideInLeft 0.8s ease-out 0.2s both;
       }
 
       .hero-text p {
@@ -360,7 +357,6 @@
         margin-bottom: 2.5rem;
         line-height: 1.7;
         font-weight: 400;
-        animation: slideInLeft 0.8s ease-out 0.4s both;
       }
 
       .hero-features {
@@ -395,7 +391,6 @@
       .hero-cta {
         display: flex;
         gap: 1rem;
-        animation: fadeInUp 0.8s ease-out 0.8s both;
       }
 
       .primary-btn {
@@ -445,7 +440,6 @@
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid var(--glass-border);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        animation: slideInRight 0.8s ease-out 0.4s both;
       }
 
       .hero-image img {
@@ -2058,8 +2052,8 @@
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#fitscore">FitScore AI</a></li>
-          <li><a href="#pricing">Pricing</a></li>
           <li><a href="#how">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
           <li class="dropdown">
             <a href="#resources">
               Resources
@@ -2068,11 +2062,13 @@
             <div class="dropdown-menu">
               <a href="/about.html">About</a>
               <a href="#blog">Blog</a>
-              <a href="#contact">Contact</a>
+              <a href="contact.html">Contact</a>
             </div>
           </li>
         </ul>
-        <button class="cta-btn">Join the Waitlist</button>
+        <button onclick="location.href = 'contact.html'" class="cta-btn">
+          Join the Waitlist
+        </button>
       </div>
     </nav>
 
@@ -2107,7 +2103,7 @@
           </div>
 
           <div class="hero-cta">
-            <button class="primary-btn">Start Free Trial</button>
+            <button onclick="location.href = '#pricing'" class="primary-btn">Start Free Trial</button>
             <a href="#demo" style="text-decoration: none">
               <button class="secondary-btn">Watch Demo</button>
             </a>
@@ -2486,7 +2482,12 @@
               <li>Email support</li>
               <li>Standard integrations</li>
             </ul>
-            <button class="pricing-btn secondary">Get Started</button>
+            <button
+              onclick="location.href = 'contact.html'"
+              class="pricing-btn secondary"
+            >
+              Get Started
+            </button>
           </div>
 
           <div class="pricing-card featured">
@@ -2503,7 +2504,7 @@
               <li>Custom integrations</li>
               <li>Team collaboration (5 users)</li>
             </ul>
-            <button class="pricing-btn primary">Start Free Trial</button>
+            <button onclick="location.href = 'contact.html'" class="pricing-btn primary">Start Free Trial</button>
           </div>
 
           <div class="pricing-card">
@@ -2519,7 +2520,7 @@
               <li>Custom AI training</li>
               <li>Advanced security & compliance</li>
             </ul>
-            <button class="pricing-btn secondary">Contact Sales</button>
+            <button onclick="location.href = 'contact.html'" class="pricing-btn secondary">Contact Sales</button>
           </div>
         </div>
       </div>
@@ -2694,7 +2695,7 @@
         business is matched with every relevant opportunity. Join hundreds of
         successful contractors using FitScore.
       </p>
-      <button class="final-cta-btn">Start Your Free 14-Day Trial</button>
+      <button onclick="location.href = 'contact.html'" class="final-cta-btn">Start Your Free 14-Day Trial</button>
     </section>
 
     <!-- Footer -->
@@ -2723,15 +2724,21 @@
           <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
         <div class="footer-section">
           <h4>Legal</h4>
           <ul>
-            <li><a href="#">Privacy Policy</a></li>
+            <li class="margin-bottom_none">
+              <a
+                href="https://cdn.prod.website-files.com/68a4b5b19d871138a5b8d1d3/68adf8dbf9257704587f4d8f_Privacy-Policy-V3-1-.pdf"
+                target="_blank"
+                class="nav_dropdown-link w-inline-block"
+                ><div class="button_label">Privacy Policy</div></a
+              >
+            </li>
             <li><a href="#">Terms of Service</a></li>
             <li><a href="#">Cookie Policy</a></li>
             <li><a href="#">Support</a></li>

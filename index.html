@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/assets/oemmart.png" />
     <script src="https://code.highcharts.com/maps/highmaps.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
     <title>
       OEMMart - AI-Powered Government Tender Matching & Contract Analysis
     </title>
@@ -2773,27 +2774,183 @@
     <!-- Highcharts Map Initialization -->
     <script>
       (async () => {
+        // ============================================
+        // CONFIGURATION - Edit this section to add/remove countries and states
+        // ============================================
+
+        const CONFIG = {
+          // Countries with their specific states to display
+          // Find country codes at: https://code.highcharts.com/mapdata/
+          countries: [
+            {
+              code: "US",
+              isoCode: "US",
+              name: "United States",
+              mapPath: "countries/us/us-all.topo.json",
+              color: "#0066ff", // Country fill color
+              // Specific states to show for this country
+              states: [
+                { key: "us-ca", name: "California", color: "#4f46e5" },
+                { key: "us-tx", name: "Texas", color: "#4f46e5" },
+                { key: "us-ny", name: "New York", color: "#4f46e5" },
+                { key: "us-fl", name: "Florida", color: "#06b6d4" },
+                // Add more US states:
+                // { key: "us-wa", name: "Washington", color: "#4f46e5" },
+                // { key: "us-il", name: "Illinois", color: "#06b6d4" },
+              ],
+            },
+            {
+              code: "CA",
+              isoCode: "CA",
+              name: "Canada",
+              mapPath: "countries/ca/ca-all.topo.json",
+              color: "#0066ff", // Country fill color
+              // Specific provinces to show for this country
+              states: [
+                { key: "ca-on", name: "Ontario", color: "#4f46e5" },
+                { key: "ca-qc", name: "Quebec", color: "#06b6d4" },
+                // Add more Canadian provinces:
+                // { key: "ca-bc", name: "British Columbia", color: "#4f46e5" },
+                // { key: "ca-ab", name: "Alberta", color: "#06b6d4" },
+              ],
+            },
+            // Add more countries here:
+            // {
+            //   code: 'IN',
+            //   isoCode: 'IN',
+            //   name: 'India',
+            //   mapPath: 'countries/in/in-all.topo.json',
+            //   color: '#0066ff',
+            //   states: [
+            //     { key: 'in-mh', name: 'Maharashtra', color: '#4f46e5' },
+            //     { key: 'in-dl', name: 'Delhi', color: '#06b6d4' },
+            //   ]
+            // },
+          ],
+        };
+
+        // ============================================
+        // AUTO-LOADING LOGIC - No need to edit below
+        // ============================================
+
         const mapData = await fetch(
           "https://code.highcharts.com/mapdata/custom/world.topo.json",
         ).then((response) => response.json());
 
-        const data = await fetch(
-          "https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json",
-        ).then((response) => response.json());
+        // Dynamically load all country maps
+        const countryMapsData = {};
+        const mapUrls = {};
 
-        // Countries to highlight (major markets for government tenders)
-        const highlightedCountries = ["US", "CA"];
+        for (const country of CONFIG.countries) {
+          const url = `https://code.highcharts.com/mapdata/${country.mapPath}`;
+          countryMapsData[country.code] = await fetch(url)
+            .then((response) => response.json())
+            .catch((error) => {
+              console.error(`Failed to load ${country.code} map:`, error);
+              return null;
+            });
+          mapUrls[country.code] = url;
+        }
 
-        // Create highlighted countries data
-        const highlightData = highlightedCountries.map((code) => ({
-          code: code,
+        // Create highlighted countries data with drilldown enabled
+        const highlightData = CONFIG.countries.map((country) => ({
+          code: country.isoCode,
           value: 1,
+          drilldown: country.code,
+          color: country.color,
         }));
 
+        // Collect only specified states from each country
+        const allStatesData = [];
+        const highlightedStatesData = [];
+
+        CONFIG.countries.forEach((country) => {
+          if (countryMapsData[country.code] && country.states) {
+            // Add only the states specified in the config
+            country.states.forEach((state) => {
+              allStatesData.push({
+                key: state.key,
+                value: 0,
+                countryCode: country.code,
+              });
+
+              highlightedStatesData.push({
+                key: state.key,
+                value: 1,
+                color: state.color,
+                name: state.name,
+              });
+            });
+          }
+        });
+
         // Initialize the chart
-        Highcharts.mapChart("container", {
+        const chart = Highcharts.mapChart("container", {
           chart: {
             backgroundColor: "transparent",
+            events: {
+              drilldown: function (e) {
+                if (!e.seriesOptions) {
+                  const chart = this;
+                  const countryCode = e.point.drilldown;
+
+                  // Use pre-loaded data for instant drilldown
+                  if (countryMapsData[countryCode]) {
+                    const mapData = countryMapsData[countryCode];
+
+                    // Find the country config to get only specified states
+                    const countryConfig = CONFIG.countries.find(
+                      (c) => c.code === countryCode,
+                    );
+
+                    if (countryConfig && countryConfig.states) {
+                      // Only show states that are in the config
+                      const stateData = countryConfig.states.map((state) => ({
+                        key: state.key,
+                        value: 1,
+                        color: state.color,
+                        name: state.name,
+                      }));
+
+                      chart.addSeriesAsDrilldown(e.point, {
+                        name: e.point.name + " - States/Provinces",
+                        mapData: mapData,
+                        data: stateData,
+                        joinBy: ["hc-key", "key"],
+                        borderColor: "#000000",
+                        borderWidth: 1,
+                        nullColor: "#f1f5f9", // Light color for non-specified states
+                        states: {
+                          hover: {
+                            color: "#3385ff",
+                            borderColor: "#000000",
+                            brightness: 0.1,
+                          },
+                        },
+                        dataLabels: {
+                          enabled: true,
+                          format: "{point.name}",
+                          style: {
+                            color: "#0066ff",
+                            fontSize: "8px",
+                            fontWeight: "500",
+                            textOutline: "1.5px black",
+                          },
+                        },
+                        tooltip: {
+                          headerFormat: "",
+                          pointFormat:
+                            "<b>{point.name}</b><br/>State/Province Level Data",
+                        },
+                      });
+                    }
+                  }
+                }
+              },
+              drillup: function () {
+                // Optional: Handle drill-up event
+              },
+            },
           },
 
           title: {
@@ -2802,6 +2959,14 @@
               color: "#4f46e5",
               fontWeight: "600",
               fontSize: "18px",
+            },
+          },
+
+          subtitle: {
+            text: "Highlighted states show active tender regions",
+            style: {
+              color: "#64748b",
+              fontSize: "12px",
             },
           },
 
@@ -2850,6 +3015,36 @@
             },
           },
 
+          drilldown: {
+            activeDataLabelStyle: {
+              color: "#FFFFFF",
+              textDecoration: "none",
+              textOutline: "1px #000000",
+            },
+            drillUpButton: {
+              relativeTo: "spacingBox",
+              position: {
+                x: 0,
+                y: 60,
+              },
+              theme: {
+                fill: "#4f46e5",
+                "stroke-width": 1,
+                stroke: "#ffffff",
+                r: 4,
+                style: {
+                  color: "#ffffff",
+                  fontWeight: "600",
+                },
+                states: {
+                  hover: {
+                    fill: "#6366f1",
+                  },
+                },
+              },
+            },
+          },
+
           series: [
             {
               // Base world map
@@ -2860,28 +3055,112 @@
               showInLegend: false,
               enableMouseTracking: false,
             },
+
+            // Dynamically generate series for each country's states
+            ...CONFIG.countries
+              .map((country) => {
+                if (!countryMapsData[country.code]) return null;
+
+                const countryStates = allStatesData.filter(
+                  (s) => s.countryCode === country.code,
+                );
+
+                return {
+                  mapData: countryMapsData[country.code],
+                  name: `${country.code} States`,
+                  data: countryStates,
+                  joinBy: ["hc-key", "key"],
+                  borderColor: "#cbd5e1",
+                  borderWidth: 0.5,
+                  nullColor: "rgba(79, 70, 229, 0.05)",
+                  showInLegend: false,
+                  enableMouseTracking: true,
+                  states: {
+                    hover: {
+                      color: "#e0e7ff",
+                      borderColor: "#94a3b8",
+                    },
+                  },
+                  dataLabels: {
+                    enabled: true,
+                    format: "{point.name}",
+                    style: {
+                      color: "#0066ff",
+                      fontSize: "7px",
+                      fontWeight: "400",
+                      textOutline: "1.5px black",
+                    },
+                  },
+                  tooltip: {
+                    headerFormat: "",
+                    pointFormat: `<b>{point.name}</b><br/>${country.code} State/Province`,
+                  },
+                };
+              })
+              .filter(Boolean),
+
             {
-              // Highlighted countries
+              // Highlighted specific states - uses first country's mapData as base
+              // but highlights across all countries
+              mapData: countryMapsData[CONFIG.countries[0]?.code],
+              name: "Active Regions",
+              data: highlightedStatesData,
+              joinBy: ["hc-key", "key"],
+              borderColor: "#ffffff",
+              borderWidth: 1.5,
+              showInLegend: false,
+              states: {
+                hover: {
+                  brightness: 0.1,
+                  borderColor: "#ffffff",
+                },
+              },
+              dataLabels: {
+                enabled: true,
+                format: "{point.name}",
+                style: {
+                  color: "#0066ff",
+                  fontSize: "8px",
+                  fontWeight: "600",
+                  textOutline: "1.5px black",
+                },
+              },
+              tooltip: {
+                headerFormat: "",
+                pointFormat: "<b>{point.name}</b><br/>Active Tender Region",
+              },
+            },
+            {
+              // Highlighted countries with drilldown
               data: highlightData,
               mapData,
               joinBy: ["iso-a2", "code"],
               name: "Active Markets",
-              color: "#4f46e5",
-              borderColor: "#ffffff",
-              borderWidth: 1.5,
+              color: "#0066ff",
+              borderColor: "#000000",
+              borderWidth: 2,
+              cursor: "pointer",
               states: {
                 hover: {
-                  color: "#6366f1",
-                  borderColor: "#ffffff",
+                  color: "#3385ff",
+                  borderColor: "#000000",
                   brightness: 0.1,
                 },
               },
               dataLabels: {
-                enabled: false,
+                enabled: true,
+                format: "{point.name}",
+                style: {
+                  color: "#0066ff",
+                  fontSize: "10px",
+                  fontWeight: "700",
+                  textOutline: "2px black",
+                },
               },
               tooltip: {
                 headerFormat: "",
-                pointFormat: "<b>{point.name}</b><br/>Active Tender Market",
+                pointFormat:
+                  "<b>{point.name}</b><br/>Click for detailed state view",
               },
             },
           ],
